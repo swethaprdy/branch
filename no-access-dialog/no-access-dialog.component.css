@@ -1,0 +1,15 @@
+.no-access-dialog {
+  width: auto;
+}
+
+.no-access-content {
+  max-height: 60vh;
+  overflow: hidden;
+  white-space: nowrap; /* Display content in a single line */
+}
+
+.mat-dialog-title {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+}

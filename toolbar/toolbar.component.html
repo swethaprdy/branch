@@ -1,0 +1,41 @@
+<mat-toolbar color="primary">
+  <span>Angular Toolbar with Dropdown</span>
+  <span class="spacer"></span>
+  <ng-container *ngIf="menuOptions && menuOptions.length > 0; else noAccessTemplate">
+    <!-- Dropdown menu components -->
+    <button mat-icon-button [matMenuTriggerFor]="menu">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <mat-menu #menu="matMenu">
+      <button mat-menu-item *ngFor="let option of menuOptions" (click)="onMenuItemClick(option)">
+        {{ option }}
+      </button>
+    </mat-menu>
+    <a mat-icon-button [routerLink]="['/']" [queryParams]="{ menu: selectedMenu }">
+      <mat-icon>home</mat-icon>
+    </a>
+    <a mat-icon-button [routerLink]="['/page1']" [queryParams]="{ menu: selectedMenu }">
+      <mat-icon>star</mat-icon>
+    </a>
+    <a mat-icon-button [routerLink]="['/page2']" [queryParams]="{ menu: selectedMenu }">
+      <mat-icon>attach_money</mat-icon>
+    </a>
+    <a mat-icon-button [routerLink]="['/page3']" [queryParams]="{ menu: selectedMenu }">
+      <mat-icon>explore</mat-icon>
+    </a>
+    <a mat-icon-button [routerLink]="['/page4']" [queryParams]="{ menu: selectedMenu }">
+      <mat-icon>settings</mat-icon>
+    </a>
+  </ng-container>
+</mat-toolbar>
+
+<ng-template #noAccessTemplate>
+  <div class="no-access-overlay">
+    <button mat-icon-button (click)="openNoAccessDialog()">
+      <mat-icon>more_vert</mat-icon>
+    </button>
+    <ng-container *ngIf="menuOptions.length === 0">
+      <app-no-access-dialog></app-no-access-dialog>
+    </ng-container>
+  </div>
+</ng-template>
